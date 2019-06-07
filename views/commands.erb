@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>commands</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="css/lstyle.css">
+</head>
+<body class="w3-container w3-white">
+    <% File.open("views/header.erb","r") do |content| %>
+        <% content.each_line do |line| %>
+            <%= line %>
+        <% end %>
+    <% end %>
+    <div class="w3-display-container w3-display-topmiddle w3-light-gray" style="width:70%">
+        <h1 class="w3-center">Commands</h1>
+        <br>
+            <table class="w3-sand">
+            <tr>
+                <th>Id</th>
+                <th>Timestamp</th>
+                <th>cmds</th>
+                <th>Delete</th>
+            </tr>
+            <% for i in params["cmd"] %>
+                <form action="/delete" method="post">
+                    <tr>
+                        <td>
+                            <input type="text" name="id" value="<%= i["id"] %>" readonly>
+                        </td>
+                        <td>
+                            <%= i["timestamp"] %>
+                        </td>
+                        <td>
+                            <%= i["comd"] %>
+                        </td>
+                        <td>
+                            <button class="w3-button w3-red">delete</button>
+                        </td>
+                    </tr>
+                </form>
+            <% end %>
+            </table>
+        <br>
+    </div>
+</body>
+</html>
